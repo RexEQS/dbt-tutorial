@@ -1,18 +1,9 @@
 with customers as (
-	select
-		"AccountID" as customer_id,
-		"Name" as first_name,
-		bbo_navid as last_name
-	from raw_crm.accounts a
+	select * from {{ ref('stg_customers') }}
 ),
 
 orders as (
-	select
-		opportunityid as order_id,
-		accountid as customer_id,
-		modifiedon as order_date,
-		statecodename as status
-	from raw_crm.opportunity o
+	select * from {{ ref('stg_orders') }}
 ),
 
 customer_orders as (
